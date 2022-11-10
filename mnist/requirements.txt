@@ -1,0 +1,5 @@
+torch
+torchvision
+tritonclient[all]
+attrdict
+git+https://github.com/NVIDIA-AI-IOT/torch2trt@master

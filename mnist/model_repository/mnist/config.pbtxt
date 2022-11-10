@@ -1,0 +1,20 @@
+name: "mnist"
+platform: "onnxruntime_onnx"
+max_batch_size: 0
+input [
+  {
+    name: "modelInput"
+    data_type: TYPE_FP32
+    format: FORMAT_NCHW
+    dims: [ 1, 28, 28 ]
+    reshape { shape: [ 1, 1, 28, 28 ] }
+  }
+]
+output [
+  {
+    name: "modelOutput"
+    data_type: TYPE_FP32
+    dims: [ 1, 10 ]
+    reshape { shape: [ 1, 10 ] }
+  }
+]
