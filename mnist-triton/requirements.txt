@@ -2,4 +2,11 @@ torch
 torchvision
 tritonclient[all]
 attrdict
+fastapi
+starlette
+hypercorn
+tritonclient
+python-multipart
+numpy
+Pillow
 git+https://github.com/NVIDIA-AI-IOT/torch2trt@master

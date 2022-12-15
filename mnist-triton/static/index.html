@@ -1,0 +1,25 @@
+<!DOCTYPE html> 
+<html>
+   <body>
+      <input id="fileupload" type="file" name="fileupload" />
+      <button id="upload-button" onclick="query()"> Query </button><br /><br />
+      <img id="image" src="" alt="" />
+
+      <script>
+         async function query() {
+            let formData = new FormData();
+            document.getElementById("image").src = URL.createObjectURL(fileupload.files[0]);
+            formData.append("file", fileupload.files[0]);
+            const response = await fetch('/query', {
+               method: "POST", 
+               body: formData
+            });
+            const data = await response.json();
+
+            //alert(data);
+            console.log(data);
+         }
+      </script>
+
+   </body>
+</html>

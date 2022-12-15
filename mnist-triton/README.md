@@ -2,7 +2,7 @@
 
 ## Train the model
 In the devcontainer, run
-`python3 train.py --save-model --epochs 2`
+`python3 train.py --epochs 2`
 which generates the ONNX file `model_repository/mnist/1/model.onnx`.
 
 ## Serve the model

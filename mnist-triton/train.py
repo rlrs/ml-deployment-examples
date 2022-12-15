@@ -69,7 +69,7 @@ def main():
                         help='random seed (default: 1)')
     parser.add_argument('--log-interval', type=int, default=10, metavar='N',
                         help='how many batches to wait before logging training status')
-    parser.add_argument('--save-model', action='store_true', default=False,
+    parser.add_argument('--no-save-model', action='store_false', default=True,
                         help='For Saving the current Model')
     args = parser.parse_args()
     use_cuda = not args.no_cuda and torch.cuda.is_available()
@@ -83,6 +83,7 @@ def main():
         device = torch.device("mps")
     else:
         device = torch.device("cpu")
+    print(f"Using device: {device}")
 
     train_kwargs = {'batch_size': args.batch_size}
     test_kwargs = {'batch_size': args.test_batch_size}
@@ -113,7 +114,7 @@ def main():
         test(model, device, test_loader)
         scheduler.step()
 
-    if args.save_model:
+    if not args.no_save_model:
         # export ONNX model
         model.eval()
         dummy_input = torch.randn(1, 1, 28, 28, device=device)

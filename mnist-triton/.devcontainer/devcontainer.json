@@ -26,6 +26,10 @@
     "--ulimit",
     "memlock=-1",
     "--ulimit",
-    "stack=67108864"
+    "stack=67108864",
+    "--network",
+    "host",
+    //"-p",
+    //"8001:8001"
   ]
 }
