@@ -1,25 +1,111 @@
 <!DOCTYPE html> 
 <html>
-   <body>
-      <input id="fileupload" type="file" name="fileupload" />
-      <button id="upload-button" onclick="query()"> Query </button><br /><br />
-      <img id="image" src="" alt="" />
-
-      <script>
-         async function query() {
-            let formData = new FormData();
-            document.getElementById("image").src = URL.createObjectURL(fileupload.files[0]);
-            formData.append("file", fileupload.files[0]);
-            const response = await fetch('/query', {
-               method: "POST", 
-               body: formData
-            });
-            const data = await response.json();
-
-            //alert(data);
-            console.log(data);
+   <head>
+      <title>MNIST Query</title>
+   <style>
+      .container {
+         max-width: 800px;
+         margin: 0 auto;
+      }
+      .header {
+         text-align: center;
+      }
+      .content {
+         text-align: center;
+      }
+      .prediction-table {
+         margin: 0 auto;
+         border-collapse: collapse;
+         border: 1px solid black;
+      }
+      .prediction-table th {
+         border: 1px solid black;
+         padding: 5px;
+      }
+      .prediction-table td {
+         border: 1px solid black;
+         padding: 5px;
+      }
+      #image {
+         width: 100px;
+         height: 100px;
+         border: 1px solid black;
+      }
+   </style>
+   <script>
+      async function query() {
+         let formData = new FormData();
+         document.getElementById("image").src = URL.createObjectURL(fileupload.files[0]);
+         formData.append("file", fileupload.files[0]);
+         const response = await fetch('/query', {
+            method: "POST", 
+            body: formData
+         });
+         const data = await response.json();
+         for (let i = 0; i < 10; i++) {
+            const prob = data[i].toFixed(5);
+            document.getElementById(i).innerHTML = prob;
          }
-      </script>
-
+      }
+   </script>
+   </head>
+   <body>
+      <div class="container">
+         <header class="header">
+            <h1>MNIST Query</h1>
+         </header>
+         <main class="content">
+            <p>Upload an image of a handwritten digit and the model will predict the digit.</p>
+            <input id="fileupload" type="file" name="fileupload" />
+            <button id="upload-button" onclick="query()"> Query </button><br /><br />
+            <img id="image" src="" alt="" />
+            <table class="prediction-table">
+               <tr>
+                  <th>Digit</th>
+                  <th>Probability</th>
+               </tr>
+               <tr>
+                  <td>0</td>
+                  <td id="0"></td>
+               </tr>
+               <tr>
+                  <td>1</td>
+                  <td id="1"></td>
+               </tr>
+               <tr>
+                  <td>2</td>
+                  <td id="2"></td>
+               </tr>
+               <tr>
+                  <td>3</td>
+                  <td id="3"></td>
+               </tr>
+               <tr>
+                  <td>4</td>
+                  <td id="4"></td>
+               </tr>
+               <tr>
+                  <td>5</td>
+                  <td id="5"></td>
+               </tr>
+               <tr>
+                  <td>6</td>
+                  <td id="6"></td>
+               </tr>
+               <tr>
+                  <td>7</td>
+                  <td id="7"></td>
+               </tr>
+               <tr>
+                  <td>8</td>
+                  <td id="8"></td>
+               </tr>
+               <tr>
+                  <td>9</td>
+                  <td id="9"></td>
+               </tr>
+            </table>
+         </main>
+      </div>
    </body>
 </html>
