@@ -9,7 +9,8 @@ Instead, we serve an interface using FastAPI through Hypercorn, `hypercorn --bin
 
 ## Try the model
 To use the Triton API directly, `./client.sh` starts an interactive Triton SDK container. In this container, you can query the model like `./install/bin/image_client -m mnist <path_to_image>`.
-The website is served on port `8080`, which serves a static HTML file `static/index.html`. This page uses a bit of Javascript to communicate with the exposed FastAPI to run queries and retrieve responses.
+
+Alternatively, the website is served on port `8080`, which serves a static HTML file `static/index.html`. This page uses a bit of Javascript to communicate with the exposed FastAPI to run queries and retrieve responses.
 
 ## Serving with HTTP/2 and TLS
 Hypercorn will use HTTP/2 and TLS if you give it a private key and certificate
